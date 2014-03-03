@@ -23,13 +23,10 @@ public class Activator implements BundleActivator {
 	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
 	 */
 	public void start(BundleContext context) throws Exception {
-//		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-//		Properties properties = new Properties();
-//		factory = new PersistenceProvider().createEntityManagerFactory(PERSISTENCE_UNIT_NAME, properties);
 		HashMap<String, Object> props = new HashMap<String, Object>();
 		props.put(PersistenceUnitProperties.CLASSLOADER, Activator.class
 		.getClassLoader());
-		factory = new PersistenceProvider().createEntityManagerFactory("todo", props);
+		factory = new PersistenceProvider().createEntityManagerFactory(PERSISTENCE_UNIT_NAME, props);
 	    EntityManager em = factory.createEntityManager();
 	    // read the existing entries and write to console
 	    Query q = em.createQuery("select t from Todo t");
